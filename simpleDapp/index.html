@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simpleDapp</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const burgerMenuButton = document.querySelector('.burger-menu-button');
+            const linksContainer = document.querySelector('.links-container');
+    
+            burgerMenuButton.addEventListener('click', function () {
+                linksContainer.classList.toggle('active');
+            });
+
+            window.addEventListener('resize', function () {
+            if (window.innerWidth > 600) {
+                linksContainer.classList.remove('active');
+            }
+        });
+        });
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img class="logo" src="" alt="Logo">
+        </div>
+            <div class="buttons-container">
+                <nav class="links-container">
+                    <ul>
+                        <li><a href="#">social</a></li>
+                        <li><a href="#">link</a></li>
+                        <li><a href="#">other</a></li>
+                    </ul>
+                </nav>
+                <button class="mode-button" data-theme-toggle>&#9680</button>
+                <div class="connect-container">
+                    <button class="connect-button" id="connectButton">Connect</button>
+                </div>
+                <div class="burger-menu-container">
+                    <button class="burger-menu-button">&#9776;</button>
+                </div>
+            </div> 
+    </header>
+
+    <main>
+        <div class="master-container">
+            <div class="big-container">
+                <div class="content-container">
+                   <div class="image-container">
+                       <img class="image" src="" alt="Image">
+                   </div>
+                   <div class="description-container">
+                       <p>This is a description area. Add your content here.</p>
+                   </div>
+               </div>
+               <div class="action-container">
+                   <button class="action-button" id="actionButton">ACTION</button>
+               </div>
+          </div>
+          <div class="contract-container">
+           <h2>Verified smart contract:</h2>
+           <p>0x000000000000000000000000000000000000dead</p>
+          </div>
+        </div>
+    </main>
+
+    <footer>
+            <p>simpleDapp ☺︎</p>
+    </footer>
+
+    <script src="./script.js" type="module"></script>
+
+</body>
+</html>

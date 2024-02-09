@@ -1,5 +1,5 @@
 # simpleDapp
-A simple dapp front end template for interacting with simple smart contract. It allows users to perform simple functions directly from the user interface.
+A simple dapp front end template for interacting with simple smart contract.
 
 ## Features
 

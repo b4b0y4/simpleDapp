@@ -24,7 +24,6 @@ A simple dapp front end template for interacting with simple smart contract.
 
 ## Notes
 
-- Ensure you have a compatible web3 provider (e.g., MetaMask) installed and configured in your browser to interact with Ethereum.
 - Always verify the contract address and ABI to ensure you're interacting with the correct smart contract.
 - This is a simple demonstration app and may require additional security measures before deploying to production.
 

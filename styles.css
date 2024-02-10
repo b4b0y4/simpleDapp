@@ -144,13 +144,16 @@ main {
 }
 
 .action-container {
+    display: flex;
+    justify-content: center;
     margin-top: 10px;
     text-align: center;
     width: 100%;
 }
 
 .action-button {
-    padding: 12px 50px;
+    padding: 15px;
+    width: 50%;
 }
 
 .contract-container {
@@ -235,8 +238,6 @@ footer {
     }
 
     .action-button {
-        display: block;
-        width: 100%;
-        padding: 15px;
+        width: 80%;
     }
 }

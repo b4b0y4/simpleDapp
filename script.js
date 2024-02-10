@@ -1,5 +1,5 @@
-import { ethers } from "./ethers-5.6.esm.min.js"
-import { abi, contractAddress } from "./constants.js"
+import { ethers } from "./constants/ethers-5.6.esm.min.js"
+import { abi, contractAddress } from "./constants/constants.js"
 
 const connectButton = document.getElementById("connectButton")
 const actionButton = document.getElementById("actionButton")
@@ -118,12 +118,7 @@ function listenForTransactionMine(transactionResponse, provider) {
   })
 }
 
-/**
-* Utility function to calculate the current theme setting.
-* Look for a local storage value.
-* Fall back to system setting.
-* Fall back to light mode.
-*/
+// function to calculate the current theme setting.
 function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
   if (localStorageTheme !== null) {
     return localStorageTheme
@@ -136,57 +131,42 @@ function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
   return "light"
 }
 
-/**
-* Utility function to update the theme setting on the html tag
-*/
+// function to update the theme setting on the html tag
 function updateThemeOnHtmlEl({ theme }) {
   document.querySelector("html").setAttribute("data-theme", theme)
 }
 
-/**
-* Utility function to update the logo image source
-*/
+// function to update the logo image source
 function updateLogo({ logoEl, isDark }) {
   const newLogoSrc = isDark ? "./images/logo-dark.png" : "./images/logo-light.png"
   logoEl.setAttribute("src", newLogoSrc)
 }
 
-/**
-* Utility function to update the image source
-*/
+// function to update the image source
 function updateImage({ imgEl, isDark }) {
   const newImgSrc = isDark ? "./images/img-dark.png" : "./images/img-light.png"
   imgEl.setAttribute("src", newImgSrc)
 }
 
-/**
-* On page load:
-*/
+//On page load:
 
-/**
-* 1. Grab what we need from the DOM and system settings on page load
-*/
+// 1. Grab what we need from the DOM and system settings on page load
+
 const button = document.querySelector("[data-theme-toggle]")
 const logo = document.querySelector(".logo")
 const image = document.querySelector(".image")
 const localStorageTheme = localStorage.getItem("theme")
 const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)")
 
-/**
-* 2. Work out the current site settings
-*/
+// 2. Work out the current site settings
 let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
 
-/**
-* 3. Update the theme setting logo and image according to current settings
-*/
+// 3. Update the theme setting logo and image according to current settings
 updateThemeOnHtmlEl({ theme: currentThemeSetting })
 updateLogo({ logoEl: logo, isDark: currentThemeSetting === "dark" })
 updateImage({ imgEl: image, isDark: currentThemeSetting === "dark" })
 
-/**
-* 4. Add an event listener to toggle the theme, logo and image
-*/
+// 4. Add an event listener to toggle the theme, logo and image
 button.addEventListener("click", (event) => {
   const newTheme = currentThemeSetting === "dark" ? "light" : "dark"
 

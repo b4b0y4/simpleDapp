@@ -9,7 +9,7 @@ A simple dapp front end template for interacting with simple smart contract.
 
 1. Clone this repository to your local machine:
 
-2. Open the project directory and navigate to the `constants.js` file.
+2. Open the project directory and navigate to the `constants.js` file in the constants folder.
 
 3. Update the following constants with your desired smart contract details:
 

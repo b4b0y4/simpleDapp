@@ -3,8 +3,7 @@ A simple dapp front end template for interacting with simple smart contract.
 
 ## Features
 
-- Connects to any Ethereum smart contract using its address and ABI (Application Binary Interface).
-- Provides a simple interface for interacting with the blockchain.
+- Connects and provides a simple interface to any EVM smart contract using its address and ABI (Application Binary Interface).
 
 ## Usage
 

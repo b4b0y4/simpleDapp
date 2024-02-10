@@ -7,15 +7,18 @@ const actionButton = document.getElementById("actionButton")
 connectButton.onclick = connect
 actionButton.onclick = action
 
-//  function to connect wallet
+// Function to connect wallet
 async function connect() {
-  // Store the initial text content of the action button
+  // Store the initial text content of the connect button
   const initialConnectText = connectButton.innerHTML
   if (typeof window.ethereum !== "undefined") {
     try {
-      await ethereum.request({ method: "eth_requestAccounts" })
-      updateDisplayedAccount()
-      ethereum.on("accountsChanged", handleAccountsChanged)
+      await window.ethereum.request({ method: "eth_requestAccounts" })
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      await updateDisplayedAddress(provider);
+      window.ethereum.on("accountsChanged", async (accounts) => {
+        await handleAccountsChanged(accounts, provider)
+      });
     } catch (error) {
       console.log(error)
     }
@@ -23,34 +26,47 @@ async function connect() {
     connectButton.innerHTML = "Get a wallet "
 
     // Restore the initial text content of the connect button after a delay (e.g., 2 seconds)
-  setTimeout(() => {
-    connectButton.innerHTML = initialConnectText
-  }, 2000)
+    setTimeout(() => {
+      connectButton.innerHTML = initialConnectText;
+    }, 2000)
   }
 }
 
-// function to update displayed account
-async function updateDisplayedAccount() {
-  const accounts = await ethereum.request({ method: "eth_accounts"})
-  let account = getFormattedAccount(accounts)
-  connectButton.innerHTML = account
-}
-
-// function to handle account changes
-async function handleAccountsChanged(accounts) {
-    let account = getFormattedAccount(accounts)
-    connectButton.innerHTML = account || "Connect"
-}
-
-// function to format account
-function getFormattedAccount(accounts) {
-  if (accounts.length > 0) {
-    const firstAccount = accounts[0]
-    return firstAccount.length === 42
-    ? `${firstAccount.substring(0, 6)}...${firstAccount.substring(38)}`
-    : firstAccount
+// Function to update displayed account address
+async function updateDisplayedAddress(provider) {
+  const accounts = await window.ethereum.request({ method: "eth_accounts" })
+  const account = accounts.length > 0 ? accounts[0] : null;
+  connectButton.innerHTML = account ? `${account.substring(0, 6)}...${account.substring(38)}` : "Connect"
+  
+  if (account) {
+    updateENSNameIfAvailable(account, provider)
   }
-  return null
+}
+
+// Function to handle account changes
+async function handleAccountsChanged(accounts, provider) {
+  const account = accounts.length > 0 ? accounts[0] : null
+  connectButton.innerHTML = account ? `${account.substring(0, 6)}...${account.substring(38)}` : "Connect"
+
+  if (account) {
+    updateENSNameIfAvailable(account, provider)
+  }
+}
+
+// Function to update ENS name if available
+async function updateENSNameIfAvailable(account, provider) {
+  try {
+    // Create a provider specifically for Ethereum mainnet ENS resolution
+    const mainnetProvider = new ethers.providers.JsonRpcProvider("https://eth.llamarpc.com")
+    
+    // Attempt ENS resolution using the mainnet provider
+    const ensName = await mainnetProvider.lookupAddress(account)
+    if (ensName) {
+      connectButton.innerHTML = ensName
+    }
+  } catch (error) {
+    console.log("Error getting ENS name:", error)
+  }
 }
 
 // Function to do something
@@ -110,14 +126,14 @@ function listenForTransactionMine(transactionResponse, provider) {
 */
 function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
   if (localStorageTheme !== null) {
-    return localStorageTheme;
+    return localStorageTheme
   }
 
   if (systemSettingDark.matches) {
-    return "dark";
+    return "dark"
   }
 
-  return "light";
+  return "light"
 }
 
 /**

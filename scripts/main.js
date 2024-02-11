@@ -1,21 +1,21 @@
+// Import statements
 import { ethers } from "./ethers-5.6.esm.min.js"
 import { networkConfigs, abi, contractAddress } from "./constants.js"
-
-// Default network
-let currentNetwork = networkConfigs.sepolia
 
 // Get references to the HTML elements
 const connectButton = document.getElementById("connectButton")
 const actionButton = document.getElementById("actionButton")
 
-// Retrieve the connected account from local storage
-const connectedAccount = localStorage.getItem("connectedAccount")
+// Default network
+const currentNetwork = networkConfigs.sepolia
 
-// Set event handlers for buttons
 connectButton.onclick = connect
 actionButton.onclick = action
 
-// Function to connect wallet
+// Retrieve the connected account from local storage
+const connectedAccount = localStorage.getItem("connectedAccount")
+
+// Connection and Account Handling
 async function connect() {
   // Store the initial text content of the connect button
   const initialConnectText = connectButton.innerHTML
@@ -30,7 +30,7 @@ async function connect() {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
 
       // Check if the connected network is Sepolia
-      const network = await provider.getNetwork();
+      const network = await provider.getNetwork()
       if (network.chainId !== currentNetwork.chainId) {
         // Disable interaction with the app and prompt user to switch network
         disableAppInteraction()
@@ -38,7 +38,7 @@ async function connect() {
       }
       
       // Update the displayed address and handle account changes
-      await updateDisplayedAddress(provider);
+      await updateDisplayedAddress(provider)
       window.ethereum.on("accountsChanged", async (accounts) => {
         await handleAccountsChanged(accounts, provider)
       })
@@ -47,7 +47,7 @@ async function connect() {
     }
   } else {
     // If MetaMask is not installed, prompt user to get a wallet
-    connectButton.innerHTML = "Get a wallet "
+    connectButton.innerHTML = "Get a wallet"
     
     // Restore the initial text content of the connect button after a delay
     setTimeout(() => {
@@ -56,38 +56,6 @@ async function connect() {
   }
 }
 
-// Function to enable interaction with the app
-function enableAppInteraction() {
-  connectButton.disabled = false
-  actionButton.disabled = false
-  connectButton.innerHTML = connectedAccount
-}
-
-// Function to disable interaction with the app
-function disableAppInteraction() {
-  connectButton.disabled = true
-  actionButton.disabled = true
-  connectButton.innerHTML = `Switch to ${currentNetwork.name}`
-}
-
-// Function to update displayed account address
-async function updateDisplayedAddress(provider) {
-  // Retrieve the list of Ethereum accounts from MetaMask
-  const accounts = await window.ethereum.request({ method: "eth_accounts" })
-  
-  // Extract the first account from the list
-  const account = accounts.length > 0 ? accounts[0] : null
-
-  // Update the connect button with the account address or "Connect" if no account is connected
-  connectButton.innerHTML = account ? `${account.substring(0, 6)}...${account.substring(38)}` : "Connect"
-  
-  if (account) {
-    // Update ENS name if available
-    updateENSNameIfAvailable(account, provider)
-  }
-}
-
-// Function to handle account changes
 async function handleAccountsChanged(accounts, provider) {
   // Extract the first account from the list of changed accounts
   const account = accounts.length > 0 ? accounts[0] : null
@@ -105,7 +73,22 @@ async function handleAccountsChanged(accounts, provider) {
   }
 }
 
-// Function to update ENS name if available
+async function updateDisplayedAddress(provider) {
+  // Retrieve the list of Ethereum accounts from MetaMask
+  const accounts = await window.ethereum.request({ method: "eth_accounts" })
+  
+  // Extract the first account from the list
+  const account = accounts.length > 0 ? accounts[0] : null
+
+  // Update the connect button with the account address or "Connect" if no account is connected
+  connectButton.innerHTML = account ? `${account.substring(0, 6)}...${account.substring(38)}` : "Connect"
+  
+  if (account) {
+    // Update ENS name if available
+    updateENSNameIfAvailable(account, provider)
+  }
+}
+
 async function updateENSNameIfAvailable(account, provider) {
   try {
     // Create a provider specifically for Ethereum mainnet ENS resolution
@@ -123,12 +106,42 @@ async function updateENSNameIfAvailable(account, provider) {
   }
 }
 
-// Function to perform an action
+// Interaction Enablement/Disabling
+function enableAppInteraction(provider) {
+  connectButton.disabled = false
+  actionButton.disabled = false
+  connectButton.innerHTML = "Connected"
+  updateDisplayedAddress(provider)
+}
+
+function disableAppInteraction() {
+  connectButton.disabled = true
+  actionButton.disabled = true
+  connectButton.innerHTML = `Switch to ${currentNetwork.name}`
+}
+
+async function handleChainChanged(chainId) {
+  // Convert the chainId from hexadecimal to numeric
+  const numericChainId = parseInt(chainId, 16)
+
+  // Get the current network details based on the numeric chainId
+  const network = Object.values(networkConfigs).find(net => net.chainId === numericChainId)
+
+  // If the current network matches the desired network configuration, enable app interaction
+  if (network && network.chainId === currentNetwork.chainId) {
+    enableAppInteraction()
+  } else {
+    // If the current network does not match the desired network configuration, disable app interaction
+    disableAppInteraction()
+  }
+}
+
+// Action Execution
 async function action() {
   // Store the initial text content of the action button
   const initialActionText = actionButton.innerHTML
   actionButton.innerHTML = "Actioning..."
-console.log(currentNetwork)
+
   if (typeof window.ethereum !== "undefined") {
     // Create a provider using the MetaMask provider
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -155,10 +168,9 @@ console.log(currentNetwork)
   // Restore the initial text content of the action button after a delay
   setTimeout(() => {
     actionButton.innerHTML = initialActionText
-  }, 2000);
+  }, 2000)
 }
 
-// Function to listen for transaction mined
 function listenForTransactionMine(transactionResponse, provider) {
   console.log(`Mining ${transactionResponse.hash}`)
   return new Promise((resolve, reject) => {
@@ -171,12 +183,7 @@ function listenForTransactionMine(transactionResponse, provider) {
   })
 }
 
-// On page load, immediately check for a connected account in local storage
-if (connectedAccount) {
-  connectButton.innerHTML = `${connectedAccount.substring(0, 6)}...${connectedAccount.substring(38)}`
-}
-
-// Add an event listener to the window load event to call updateDisplayedAddress
+// Initialization and Event Listeners Setup
 window.addEventListener('load', async () => {
   if (typeof window.ethereum !== "undefined") {
     try {
@@ -188,7 +195,7 @@ window.addEventListener('load', async () => {
       
       // Listen for account changes
       window.ethereum.on("accountsChanged", async (accounts) => {
-        await handleAccountsChanged(accounts, provider);
+        await handleAccountsChanged(accounts, provider)
       })
     } catch (error) {
       console.log(error)
@@ -196,22 +203,10 @@ window.addEventListener('load', async () => {
   }
 })
 
-
-// Add an event listener for chain changes
 window.ethereum.on("chainChanged", handleChainChanged)
 
-// Function to handle chain changes
-async function handleChainChanged(chainId) {
-  // Get the current network details based on the chainId
-  const network = networkConfigs[chainId]
-  
-  if (!network) {
-    // If the network is not recognized, disable app interaction
-    disableAppInteraction()
-    return
-  }
-  enableAppInteraction()
+// MetaMask Availability Check
+// On page load, immediately check for a connected account in local storage
+if (connectedAccount) {
+  connectButton.innerHTML = `${connectedAccount.substring(0, 6)}...${connectedAccount.substring(38)}`
 }
-
-
-

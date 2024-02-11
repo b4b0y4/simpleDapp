@@ -16,7 +16,7 @@ A simple dapp front end template for interacting with simple smart contract.
 - `contractAddress`: address of the smart contract you want to interact with.
 - `abi`: ABI (Application Binary Interface) of the smart contract. You can obtain this from the contract's source code or through Remix IDE.
 
-4. Navigate to the `main.js` file in the src folder and modify/add functions according to the smart contract's interface.
+4. Navigate to the `main.js` file in the scripts folder and modify/add functions according to the smart contract's interface.
 
 5. Modify the HTML and CSS files to your needs.
 

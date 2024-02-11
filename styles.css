@@ -208,11 +208,11 @@ footer {
         position: absolute;
         top: 8px;
         right: 5px;
-        background: none;
+        background: var(--color-bg);
+        color: var(--color-txt);
+        font-size: 2em;
         border: none;
         box-shadow: none;
-        font-size: 2em;
-        color: var(--color-txt);
     } 
 
     a:hover, button:hover {
@@ -227,12 +227,12 @@ footer {
 
     .burger-menu-button {
         display: block;
-        background-color: transparent;
+        background-color: var(--color-bg);
+        color: var(--color-txt);
         font-size: 2em;
         padding: 0 8px 5px 10px;
         margin-left: 2px;
         border: none;
-        color: var(--color-txt);
         box-shadow: none;
     }
 

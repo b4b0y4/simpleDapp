@@ -9,14 +9,14 @@ A simple dapp front end template for interacting with simple smart contract.
 
 1. Clone this repository to your local machine:
 
-2. Open the project directory and navigate to the `constants.js` file in the constants folder.
+2. Open the project directory and navigate to the `constants.js` file in the scripts folder.
 
 3. Update the following constants with your desired smart contract details:
 
 - `contractAddress`: address of the smart contract you want to interact with.
 - `abi`: ABI (Application Binary Interface) of the smart contract. You can obtain this from the contract's source code or through Remix IDE.
 
-4. Navigate to the `script.js` file and modify/add functions according to the smart contract's interface.
+4. Navigate to the `script.js` file in the scripts folder and modify/add functions according to the smart contract's interface.
 
 5. Modify the HTML and CSS files to your needs.
 

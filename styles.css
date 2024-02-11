@@ -69,7 +69,7 @@ a:hover {
 }
 
 .mode-button {
-    font-size: 1.2em;
+    font-size: 1.4em;
     border: none;
     box-shadow: none;
     color: var(--color-txt);
@@ -211,8 +211,8 @@ footer {
     .burger-menu-button {
         display: block;
         background-color: transparent;
-        font-size: 1.5em;
-        padding: 0 8px 4px 8px;
+        font-size: 2em;
+        padding: 0 8px 5px 10px;
         margin-left: 2px;
         border: none;
         color: var(--color-txt);
@@ -221,7 +221,7 @@ footer {
 
     .master-container {
         max-width: 100%;
-        margin: 0 10px;
+        margin: 0 20px;
     }
 
     .big-container {

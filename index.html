@@ -6,22 +6,6 @@
     <title>simpleDapp</title>
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const burgerMenuButton = document.querySelector('.burger-menu-button');
-            const linksContainer = document.querySelector('.links-container');
-    
-            burgerMenuButton.addEventListener('click', function () {
-                linksContainer.classList.toggle('active');
-            });
-
-            window.addEventListener('resize', function () {
-            if (window.innerWidth > 600) {
-                linksContainer.classList.remove('active');
-            }
-        });
-        });
-    </script>
 </head>
 <body>
 
@@ -36,6 +20,8 @@
                         <li><a href="#">link</a></li>
                         <li><a href="#">other</a></li>
                     </ul>
+                    <button class="close-button">&#10006;</button>
+
                 </nav>
                 <button class="mode-button" data-theme-toggle>&#9680</button>
                 <div class="connect-container">
@@ -75,6 +61,7 @@
 
     <script src="./scripts/script.js" type="module"></script>
     <script src="./scripts/theme.js" type="module"></script>
+    <script src="./scripts/burger.js" type="module"></script>
 
 </body>
 </html>

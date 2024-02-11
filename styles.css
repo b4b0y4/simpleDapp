@@ -68,6 +68,10 @@ a:hover {
     color: var(--color-hvr);
 }
 
+.close-button {
+    display: none;
+}
+
 .mode-button {
     font-size: 1.4em;
     border: none;
@@ -174,11 +178,12 @@ footer {
 
     .links-container {
         display: none;
+        justify-content: center;
     }
 
     .links-container li {
         display: block;
-        margin: 20px;
+        margin: 40px;
         font-size: 1.4em;
     }
 
@@ -188,7 +193,7 @@ footer {
         align-items: center;
         text-align: center;
         position: fixed;
-        top: 69px;
+        top: 0;
         right: 0;
         left: 0;
         bottom: 0;
@@ -196,8 +201,20 @@ footer {
         padding: 10px;
         z-index: 999;
         transition: transform 0.3s ease-in-out;
-        opacity: 0.9;
     }
+
+    .close-button {
+        display: block;
+        position: absolute;
+        top: 8px;
+        right: 5px;
+        background: none;
+        border: none;
+        font-size: 2em;
+        color: var(--color-txt);
+        box-shadow: none;
+    } 
+
     a:hover, button:hover {
         color: var(--color-txt);
         border-color: var(--color-txt);

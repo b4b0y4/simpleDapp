@@ -9,11 +9,11 @@ const actionButton = document.getElementById("actionButton")
 // Default network
 const currentNetwork = networkConfigs.sepolia
 
-connectButton.onclick = connect
-actionButton.onclick = action
-
 // Retrieve the connected account from local storage
 const connectedAccount = localStorage.getItem("connectedAccount")
+
+connectButton.onclick = connect
+actionButton.onclick = action
 
 // Connection and Account Handling
 async function connect() {
@@ -209,4 +209,5 @@ window.ethereum.on("chainChanged", handleChainChanged)
 // On page load, immediately check for a connected account in local storage
 if (connectedAccount) {
   connectButton.innerHTML = `${connectedAccount.substring(0, 6)}...${connectedAccount.substring(38)}`
+  updateDisplayedAddress(provider)
 }

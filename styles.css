@@ -197,14 +197,13 @@ footer {
 
 @media (max-width: 600px) {
 
+    .buttons-container {
+        padding: 0;
+    }
+
     .links-container li {
         display: none;
     }
-
-    /* .burger-menu-container {
-        display: flex;
-        align-items: center;
-    } */
 
     .burger-menu-button {
         display: block;

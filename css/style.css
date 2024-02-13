@@ -88,11 +88,13 @@ a:hover {
 .mode-button {
     font-size: 1.5em;
     border: none;
-    box-shadow: none;
+    background-color: var(--color-bg);
     color: var(--color-txt);
+    padding: 0 10px;
+    margin-right: 10px;
 }
 
-button {
+.connect-button, .action-button {
     background-color: var(--color-bg);
     color: var(--color-btn);
     font-weight: 800;
@@ -210,8 +212,8 @@ footer {
         background-color: var(--color-bg);
         color: var(--color-txt);
         font-size: 2em;
-        padding: 0 8px 5px 10px;
-        margin-left: 2px;
+        padding: 0 10px 5px 10px;
+        margin-left: 10px;
         border: none;
         box-shadow: none;
     }
@@ -238,8 +240,8 @@ footer {
     .close-button {
         display: block;
         position: absolute;
-        top: 10px;
-        right: 6px;
+        top: 15px;
+        right: 15px;
         background: var(--color-bg);
         color: var(--color-txt);
         font-size: 2em;

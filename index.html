@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+    <div class="overlay" id="overlay"></div>
     <header>
         <div class="logo-container">
             <img class="logo" src="" alt="Logo">
@@ -16,18 +16,25 @@
             <div class="buttons-container">
                 <nav class="links-container">
                     <ul>
-                        <button class="close-button">&#10006;</button>
-                        <li><a href="#" target="_blank">social</a></li>
-                        <li><a href="#" target="_blank">link</a></li>
-                        <li><a href="#" target="_blank">other</a></li>
+                        <li><a href="#" target="">social</a></li>
+                        <li><a href="#" target="">link</a></li>
+                        <li><a href="#" target="">other</a></li>
                     </ul>
                 </nav>
                 <button class="mode-button" data-theme-toggle>&#9680</button>
                 <div class="connect-container">
                     <button class="connect-button" id="connectButton">Connect</button>
                 </div>
-                <div class="burger-menu-container">
-                    <button class="burger-menu-button">&#9776;</button>
+                <button class="burger-menu-button">&#9776;</button>
+                <div class="panel" id="panel">
+                    <nav class="panel-container">
+                        <ul>
+                            <li><a href="#">social</a></li>
+                            <li><a href="#">link</a></li>
+                            <li><a href="#">other</a></li>
+                        </ul>
+                    </nav>
+                    <button class="close-button">&#10006;</button>
                 </div>
             </div> 
     </header>

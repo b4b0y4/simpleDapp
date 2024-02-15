@@ -1,15 +1,15 @@
 [data-theme="light"] {
     --color-bg: white;
     --color-txt: black;
-    --color-hvr: darkgrey;
-    --color-btn: black;
+    --color-hvr: darkslateblue;
+    --color-btn: mediumslateblue;
 }
 
 [data-theme="dark"] {
     --color-bg: black;
     --color-txt: white;
     --color-hvr: darkseagreen;
-    --color-btn: white;
+    --color-btn: mediumseagreen;
 }
 
 body, html {
@@ -58,9 +58,9 @@ ul {
     margin: 0;
 }
 
-li {
+.links-container li {
     display: inline-block;
-    margin: 0 10px;
+    margin-right: 25px;
 }
 
 a {
@@ -85,16 +85,15 @@ button {
 }
 
 button:hover {
-    color: var(--color-txt);
     background-color: var(--color-hvr);
 }
 
 .mode-button {
-    font-size: 1.5em;
+    font-size: 1.4em;
     background-color: var(--color-bg);
     color: var(--color-txt);
     padding: 0 5px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .mode-button:hover {
@@ -213,16 +212,21 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-bg);
+    background-color: var(--color-btn);
     margin: 15% auto;
     padding: 20px;
-    border: 2px solid var(--color-txt);
     border-radius: 10px;
     width: 200px;
 }
 
 .modal p {
     margin: 0 0 20px 0;
+    color: var(--color-bg);
+}
+
+.modal-button {
+    background-color: var(--color-bg);
+    color: var(--color-btn);
 }
 
 @media (max-width: 600px) {
@@ -241,8 +245,13 @@ footer {
     }
 
     .mode-button:hover, .burger-menu-button:hover, .close-button:hover, a:hover {
-        background-color: inherit;
-        color: inherit;
+        background-color: var(--color-bg);
+        color: var(--color-txt);
+    }
+
+    .modal-button:hover {
+        background-color: var(--color-bg);
+        color: var(--color-btn);
     }
 
     .burger-menu-button {
@@ -251,7 +260,7 @@ footer {
         color: var(--color-txt);
         font-size: 2em;
         padding: 0 5px 5px 5px;
-        margin-left: 10px;
+        margin-left: 0;
         border: none;
         box-shadow: none;
     }

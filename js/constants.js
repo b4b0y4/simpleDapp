@@ -1,3 +1,4 @@
+// Change network in connectivity.js
 export const networkConfigs = {
     ethereum: {
       name: "Ethereum",
@@ -21,8 +22,10 @@ export const networkConfigs = {
     }
   }
 
-export const contractAddress = "0xBD1e20653c3b00CC1e7e3C7177Cf539be20B52a2" /** Add contract address */
+// Add contract address
+export const contractAddress = "0xBD1e20653c3b00CC1e7e3C7177Cf539be20B52a2" 
 
+// Add ABI
 export const abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
@@ -260,4 +263,4 @@ export const abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-] /** Add ABI */
+]

@@ -4,13 +4,18 @@ import { networkConfigs } from "./constants.js"
 const connectButton = document.getElementById("connectButton")
 const modal = document.getElementById('warningModal')
 const modalButton = document.getElementById('modalButton')
-const currentNetwork = networkConfigs.sepolia
 
-connectButton.onclick = connect
+connectButton.onclick = initiateConnectAttempt
 modalButton.onclick = switchNetwork
 
-async function connect() {
-    if (typeof window.ethereum !== "undefined") {
+// Change as needed
+const currentNetwork = networkConfigs.sepolia
+
+let initialConnectAttempted = false
+
+async function initiateConnectAttempt() {
+    if (!initialConnectAttempted) {
+        initialConnectAttempted = true
         try {
             await ethereum.request({ method: "eth_requestAccounts" })
             await checkNetwork()
@@ -29,14 +34,23 @@ async function connect() {
     } else {
         connectButton.innerHTML = "Get a wallet"
         setTimeout(() => {
-            connectButton.innerHTML = "Get a wallet"
+            connectButton.innerHTML = "Connect"
           }, 3000)
+    }
+}
+
+async function checkNetwork() {
+    const chainId = await ethereum.request({ method: 'eth_chainId' })
+    if (chainId !== `0x${currentNetwork.chainId.toString(16)}`) {
+        showModal()
+    } else {
+        modal.style.display = 'none'
     }
 }
 
 function displayTruncatedAddress(address) {
     if (!address) return
-    const truncatedAddress = address.substring(0, 6) + "..." + address.substring(address.length - 4);
+    const truncatedAddress = `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
     connectButton.innerHTML = truncatedAddress
 }
 
@@ -54,15 +68,6 @@ async function displayENSName(account) {
     }
   }
 
-async function checkNetwork() {
-    const chainId = await ethereum.request({ method: 'eth_chainId' })
-    if (chainId !== "0x" + currentNetwork.chainId.toString(16)) {
-        showModal()
-    } else {
-        modal.style.display = 'none'
-    }
-}
-
 function showModal() {
     modal.style.display = 'block'
 }
@@ -71,7 +76,7 @@ async function switchNetwork() {
     try {
         await ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: "0x" + currentNetwork.chainId.toString(16) }]
+            params: [{ chainId: `0x${currentNetwork.chainId.toString(16)}` }]
         })
     } catch (error) {
         console.error("Error switching network:", error)
@@ -90,12 +95,23 @@ ethereum.on("accountsChanged", async function(accounts) {
 })
 // Event listener for changes in wallet network
 ethereum.on("chainChanged", async function(chainId) {
-    if (chainId !== "0x" + currentNetwork.chainId.toString(16)) {
+    if (chainId !== `0x${currentNetwork.chainId.toString(16)}`) {
         showModal()
     } else {
         modal.style.display = 'none'
     }
 })
 
-// Initial call to connect function
-connect()
+// Event listener to connect on page load if already connected
+window.addEventListener('load', async () => {
+    try {
+        const accounts = await ethereum.request({ method: "eth_accounts" })
+        if (accounts.length > 0) {
+            const address = accounts[0]
+            displayTruncatedAddress(address)
+            displayENSName(address)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})

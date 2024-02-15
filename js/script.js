@@ -8,7 +8,6 @@ actionButton.onclick = action
 async function action() {
 
   const initialActionText = actionButton.innerHTML
-  actionButton.innerHTML = "Actioning..."
 
   if (typeof window.ethereum !== "undefined") {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -18,9 +17,9 @@ async function action() {
       const signer = provider.getSigner()
       const contract = new ethers.Contract(contractAddress, abi, signer)
       const transactionResponse = await contract.mintNft()
+      actionButton.innerHTML = "Actioning..."
+      
       await listenForTransactionMine(transactionResponse, provider)
-
-      // Update action button text content upon success
       actionButton.innerHTML = "Actionned"
     } catch (error) {
       // Handle errors and update action button text content
@@ -30,10 +29,9 @@ async function action() {
   } else {
     actionButton.innerHTML = "Get a wallet"
   }
-
   setTimeout(() => {
     actionButton.innerHTML = initialActionText
-  }, 2000)
+  }, 3000)
 }
 
 function listenForTransactionMine(transactionResponse, provider) {

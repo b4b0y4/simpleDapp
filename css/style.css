@@ -164,6 +164,7 @@ main {
 }
 
 .mint-button {
+    font-size: 1.2em;
     padding: 15px;
     width: 50%;
 }

@@ -87,7 +87,7 @@ button:hover {
 }
 
 .mode-button {
-    font-size: 1.4em;
+    font-size: 1.5em;
     background-color: var(--color-bg);
     color: var(--color-txt);
     padding: 0 5px;

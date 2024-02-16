@@ -1,15 +1,13 @@
 [data-theme="light"] {
     --color-bg: white;
     --color-txt: black;
-    --color-hvr: darkslateblue;
-    --color-btn: mediumslateblue;
+    --color-hue: mediumslateblue;
 }
 
 [data-theme="dark"] {
     --color-bg: black;
     --color-txt: white;
-    --color-hvr: darkseagreen;
-    --color-btn: mediumseagreen;
+    --color-hue: mediumseagreen;
 }
 
 body, html {
@@ -70,22 +68,22 @@ a {
 }
 
 a:hover {
-    color: var(--color-hvr);
+    color: var(--color-hue);
 }
 
 button {
-    background-color: var(--color-btn);
+    background-color: var(--color-hue);
     color: var(--color-bg);
     font-weight: 800;
     padding: 10px 15px;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: var(--color-hvr);
+    transform: scale(1.1);
 }
 
 .mode-button {
@@ -93,12 +91,13 @@ button:hover {
     background-color: var(--color-bg);
     color: var(--color-txt);
     padding: 0 5px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .mode-button:hover {
     background-color: var(--color-bg);
-    color: var(--color-hvr);
+    color: var(--color-hue);
+    transform: none;
 }
 
 .burger-menu-button {
@@ -123,7 +122,7 @@ main {
 .master-container {
     max-width: 500px;
     border: 2px solid var(--color-txt);
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 2px 2px;
 }
 
@@ -146,7 +145,7 @@ main {
 }
 
 .image-container img {
-    max-width: 175px;
+    max-width: 125px;
     border-radius: 5px;
 }
 
@@ -156,15 +155,15 @@ main {
     line-height: 25px;
 }
 
-.action-container {
+.mint-container {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
     text-align: center;
+    margin-top: 10px;
     width: 100%;
 }
 
-.action-button {
+.mint-button {
     padding: 15px;
     width: 50%;
 }
@@ -190,7 +189,7 @@ footer {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px); 
+    backdrop-filter: blur(2px);
     z-index: 100;
     display: none;
 }
@@ -202,7 +201,7 @@ footer {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px); 
+    backdrop-filter: blur(3px); 
     z-index: 400;
     display: none;
 }
@@ -212,7 +211,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-btn);
+    background-color: var(--color-hue);
     margin: 15% auto;
     padding: 20px;
     border-radius: 10px;
@@ -226,7 +225,7 @@ footer {
 
 .modal-button {
     background-color: var(--color-bg);
-    color: var(--color-btn);
+    color: var(--color-hue);
 }
 
 @media (max-width: 600px) {
@@ -239,19 +238,16 @@ footer {
         display: none;
     }
 
+    .mode-button {
+    margin-right: 5px;
+    }
+
     button:hover {
-        background-color: var(--color-btn);
-        color: var(--color-bg);
+        transform: none;
     }
 
-    .mode-button:hover, .burger-menu-button:hover, .close-button:hover, a:hover {
-        background-color: var(--color-bg);
+    .mode-button:hover, a:hover {
         color: var(--color-txt);
-    }
-
-    .modal-button:hover {
-        background-color: var(--color-bg);
-        color: var(--color-btn);
     }
 
     .burger-menu-button {
@@ -293,7 +289,7 @@ footer {
         display: block;
         position: absolute;
         top: 6px;
-        right: 2px;
+        right: 6px;
         background: var(--color-bg);
         color: var(--color-txt);
         font-size: 2em;
@@ -326,7 +322,7 @@ footer {
         max-width: 100%;
     }
 
-    .action-button {
+    .mint-button {
         width: 80%;
     }
 

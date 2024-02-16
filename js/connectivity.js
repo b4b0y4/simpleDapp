@@ -24,17 +24,16 @@ async function initiateConnectAttempt() {
                 const address = accounts[0]
                 displayTruncatedAddress(address)
                 displayENSName(address)
-                console.log(accounts)
             } else {
-                connectButton.innerHTML = "Connect"
+                connectButton.innerHTML = "Connect Wallet"
             }
         } catch (error) {
             console.log(error)
         }
     } else {
-        connectButton.innerHTML = "Get a wallet"
+        connectButton.innerHTML = "Install a Wallet"
         setTimeout(() => {
-            connectButton.innerHTML = "Connect"
+            connectButton.innerHTML = "Connect Wallet"
           }, 3000)
     }
 }
@@ -90,7 +89,7 @@ ethereum.on("accountsChanged", async function(accounts) {
         displayTruncatedAddress(address)
         displayENSName(address)
     } else {
-        connectButton.innerHTML = "Connect"
+        connectButton.innerHTML = "Connect Wallet"
     }
 })
 // Event listener for changes in wallet network

@@ -1,4 +1,4 @@
-// Change network in connectivity.js
+// Use own RPC / change network in connectivity.js
 export const networkConfigs = {
     ethereum: {
       name: "Ethereum",
@@ -12,12 +12,12 @@ export const networkConfigs = {
     },
     arbitrum: {
       name: "Arbitrum",
-      rpcUrl: "https://arbitrum.llamarpc.com",
+      rpcUrl: "",
       chainId: 42161
     },
     optimism: {
       name: "Optimism",
-      rpcUrl: "https://optimism.llamarpc.com",
+      rpcUrl: "",
       chainId: 10
     }
   }

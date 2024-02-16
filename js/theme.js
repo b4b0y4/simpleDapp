@@ -16,13 +16,13 @@ function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
   
   // Function to update the logo image source based on the theme
   function updateLogo({ logoEl, isDark }) {
-    const newLogoSrc = isDark ? "./images/logo-dark.png" : "./images/logo-light.png"
+    const newLogoSrc = isDark ? "./img/logo-dark.png" : "./img/logo-light.png"
     logoEl.setAttribute("src", newLogoSrc)
   }
   
   // Function to update the image source based on the theme
   function updateImage({ imgEl, isDark }) {
-    const newImgSrc = isDark ? "./images/img-dark.png" : "./images/img-light.png"
+    const newImgSrc = isDark ? "./img/img-dark.png" : "./img/img-light.png"
     imgEl.setAttribute("src", newImgSrc)
   }
   

@@ -1,13 +1,13 @@
 [data-theme="light"] {
     --color-bg: white;
     --color-txt: black;
-    --color-hue: mediumslateblue;
+    --color-btn: mediumslateblue;
 }
 
 [data-theme="dark"] {
     --color-bg: black;
     --color-txt: white;
-    --color-hue: mediumseagreen;
+    --color-btn: mediumseagreen;
 }
 
 body, html {
@@ -68,11 +68,11 @@ a {
 }
 
 a:hover {
-    color: var(--color-hue);
+    color: var(--color-btn);
 }
 
 button {
-    background-color: var(--color-hue);
+    background-color: var(--color-btn);
     color: var(--color-bg);
     font-weight: 800;
     padding: 10px 15px;
@@ -153,6 +153,7 @@ main {
     padding: 10px;
     text-align: center;
     line-height: 25px;
+    border-radius: 20px;
 }
 
 .mint-container {
@@ -172,8 +173,10 @@ main {
 .contract-container {
     font-size: 0.6em;
     padding: 10px;
-    margin-top: 20px;
+    margin: 20px 0 10px;
     text-align: center;
+    border: 2px solid var(--color-btn);
+    border-radius: 20px;
 }
 
 footer {
@@ -212,7 +215,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-hue);
+    background-color: var(--color-btn);
     margin: 15% auto;
     padding: 20px;
     border-radius: 10px;
@@ -226,7 +229,7 @@ footer {
 
 .modal-button {
     background-color: var(--color-bg);
-    color: var(--color-hue);
+    color: var(--color-btn);
 }
 
 @media (max-width: 600px) {

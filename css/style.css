@@ -121,9 +121,9 @@ main {
 
 .master-container {
     max-width: 500px;
-    border: 2px solid var(--color-txt);
+    border: 2px solid var(--color-btn);
     border-radius: 20px;
-    box-shadow: 2px 2px;
+    box-shadow: 0 2px 4px 0 var(--color-btn);
 }
 
 .big-container {
@@ -172,7 +172,7 @@ main {
 
 .contract-container {
     font-size: 0.6em;
-    padding: 10px;
+    padding: 0 15px 5px 15px;
     margin: 20px 0 10px;
     text-align: center;
     border: 2px solid var(--color-btn);

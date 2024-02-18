@@ -116,7 +116,8 @@ main {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    margin-top: 10%;
 }
 
 .master-container {
@@ -216,7 +217,7 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: var(--color-btn);
-    margin: 15% auto;
+    margin: 200px auto;
     padding: 20px;
     border-radius: 10px;
     width: 200px;
@@ -266,9 +267,7 @@ footer {
     }
 
     .panel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: block;
         position: fixed;
         top: 0;
         right: -100%;
@@ -285,8 +284,11 @@ footer {
     }
 
     .panel-container {
+        display: flex;
+        justify-content: center;
         text-align: center;
         padding: 10px;
+        margin-top: 80px;
     }
 
     .close-button {

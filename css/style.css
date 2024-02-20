@@ -96,7 +96,7 @@ button:hover {
 
 .mode-button:hover {
     background-color: var(--color-bg);
-    color: var(--color-hue);
+    color: var(--color-btn);
     transform: none;
 }
 
@@ -122,9 +122,9 @@ main {
 
 .master-container {
     max-width: 500px;
-    border: 2px solid var(--color-btn);
+    border: 2px solid var(--color-txt);
     border-radius: 20px;
-    box-shadow: 0 2px 4px 0 var(--color-btn);
+    box-shadow: 2px 2px;
 }
 
 .big-container {

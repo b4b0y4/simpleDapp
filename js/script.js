@@ -1,13 +1,12 @@
 import { ethers } from "./ethers-5.6.esm.min.js"
 import { abi, contractAddress } from "./constants.js"
 
-const actionButton = document.getElementById("actionButton")
+const mintButton = document.getElementById("mintButton")
 
-actionButton.onclick = action
+mintButton.onclick = mint
 
-async function action() {
-
-  const initialActionText = actionButton.innerHTML
+async function mint() {
+  const initialText = mintButton.innerHTML
 
   if (typeof window.ethereum !== "undefined") {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -16,21 +15,21 @@ async function action() {
       await provider.send("eth_requestAccounts", [])
       const signer = provider.getSigner()
       const contract = new ethers.Contract(contractAddress, abi, signer)
-      const transactionResponse = await contract.action() // change function name
-      actionButton.innerHTML = "Actioning..."
-      
+      const transactionResponse = await contract.mintNft() // change function name
+      mintButton.innerHTML = "Minting..."
+
       await listenForTransactionMine(transactionResponse, provider)
-      actionButton.innerHTML = "Actioned"
+      mintButton.innerHTML = "Minted!"
     } catch (error) {
       // Handle errors and update action button text content
       console.log(error)
-      actionButton.innerHTML = "Action failed"
+      mintButton.innerHTML = "Transaction failed"
     }
   } else {
-    actionButton.innerHTML = "Install a Wallet"
+    mintButton.innerHTML = "Install a Wallet"
   }
   setTimeout(() => {
-    actionButton.innerHTML = initialActionText
+    mintButton.innerHTML = initialText
   }, 3000)
 }
 

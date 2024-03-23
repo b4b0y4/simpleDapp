@@ -1,16 +1,17 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const burgerMenuButton = document.querySelector('.burger-menu-button')
-    const panel = document.getElementById('panel')
-    const closeButton = document.querySelector('.close-button')
-    const overlay = document.getElementById('overlay')
+document.addEventListener("DOMContentLoaded", function () {
+  const burgerMenu = document.querySelector(".burger-menu")
+  const panel = document.getElementById("panel")
+  const overlay = document.getElementById("overlay")
 
-    burgerMenuButton.addEventListener('click', function () {
-        panel.classList.toggle('open')
-        overlay.style.display = "block"
-    })
+  burgerMenu.addEventListener("click", function () {
+    burgerMenu.classList.toggle("close")
+    panel.classList.toggle("open")
+    overlay.style.display = panel.classList.contains("open") ? "block" : "none"
+  })
 
-    closeButton.addEventListener('click', function () {
-        panel.classList.remove('open')
-        overlay.style.display = "none"
-    })
+  overlay.addEventListener("click", function () {
+    panel.classList.remove("open")
+    overlay.style.display = "none"
+    burgerMenu.classList.toggle("close")
+  })
 })

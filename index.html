@@ -1,75 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>simpleDapp</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
 
     <header>
         <div class="logo-container">
             <img class="logo" src="" alt="Logo">
         </div>
-            <div class="buttons-container">
-                <nav class="links-container">
+        <div class="buttons-container">
+            <nav class="links-container">
+                <ul>
+                    <li><a href="#"><span><i class="fa-brands fa-twitter"></i></span>twitter</a>
+                    </li>
+                    <li><a href="#"><span><i class="fa-brands fa-github"></i></span>github</a></li>
+                    <li><a href="#"><span><i class="fa-solid fa-shop"></i></span>market</a></li>
+                </ul>
+            </nav>
+            <button class="mode-button" data-theme-toggle><i class="fa-solid fa-circle-half-stroke"></i></button>
+            <div class="connect-container">
+                <button class="connect-button" id="connectButton">Connect</button>
+            </div>
+            <div class="warning-modal" id="warningModal">
+                <div class="modal">
+                    <p>Wrong Network!!</p>
+                    <button class="modal-button" id="modalButton">Switch Now</button>
+                </div>
+            </div>
+            <div class="burger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="panel" id="panel">
+                <nav class="panel-container">
                     <ul>
-                        <li><a href="#" target="">social</a></li>
-                        <li><a href="#" target="">link</a></li>
-                        <li><a href="#" target="">other</a></li>
+                        <li><a href="#"><span><i class="fa-brands fa-twitter"></i></span>twitter</a>
+                        </li>
+                        <li><a href="#"><span><i class="fa-brands fa-github"></i></span>github</a></li>
+                        <li><a href="#"><span><i class="fa-solid fa-shop"></i></span>market</a></li>
                     </ul>
                 </nav>
-                <button class="mode-button" data-theme-toggle>&#9680;</button>
-                <div class="connect-container">
-                    <button class="connect-button" id="connectButton">Connect</button>
-                </div>
-                <div class="warning-modal" id="warningModal">
-                    <div class="modal">
-                        <p>Wrong Network!!</p>
-                        <button class="modal-button" id="modalButton">Switch Now</button>
-                    </div>
-                </div>
-                <button class="burger-menu-button">&#9776;</button>
-                <div class="panel" id="panel">
-                    <nav class="panel-container">
-                        <ul>
-                            <li><a href="#">social</a></li>
-                            <li><a href="#">link</a></li>
-                            <li><a href="#">other</a></li>
-                        </ul>
-                    </nav>
-                    <button class="close-button">&#215;</button>
-                </div>
-            </div> 
-    <div class="overlay" id="overlay"></div>
+            </div>
+        </div>
+        <div class="overlay" id="overlay"></div>
     </header>
 
     <main>
-        <div class="master-container">
-            <div class="big-container">
-                <div class="content-container">
-                   <div class="image-container">
-                       <img class="image" src="" alt="Image">
-                   </div>
-                   <div class="description-container">
-                       <p>This is a description area. Add your content here.</p>
-                   </div>
-               </div>
-               <div class="mint-container">
-                   <button class="mint-button" id="mintButton">Action</button>
-               </div>
-               <div class="contract-container">
+        <div class="big-container">
+            <div class="content-container">
+                <div class="image-container">
+                    <img class="image" src="" alt="Image">
+                </div>
+                <div class="description-container">
+                    <p>This is a simple dapp to do simple things, like minting things and stuff.</p>
+                </div>
+            </div>
+            <div class="mint-container">
+                <button class="mint-button" id="mintButton">Mint</button>
+            </div>
+            <div class="contract-container">
                 <h2>Verified smart contract:</h2>
-                <p>0x000000000000000000000000000000000000dead</p>
-               </div>
-          </div>    
+                <a href="https://sepolia.etherscan.io/address/0xbd1e20653c3b00cc1e7e3c7177cf539be20b52a2#code">
+                    <p>0xBD1e20653c3b00CC1e7e3C7177Cf539be20B52a2</p>
+                </a>
+            </div>
         </div>
     </main>
 
     <footer>
-            <p>simpleDapp ☺︎</p>
+        <p>simpleDapp ☺︎</p>
     </footer>
 
     <script src="./js/script.js" type="module"></script>
@@ -78,4 +86,5 @@
     <script src="./js/theme.js" type="module"></script>
 
 </body>
+
 </html>
